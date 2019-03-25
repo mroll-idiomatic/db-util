@@ -1,0 +1,10 @@
+cd v-env/lib/python3.7/site-packages/
+zip -r9 ../../../../lambda_function.zip .
+cd ../../../..
+
+zip -g lambda_function.zip lambda_function.py
+zip -g lambda_function.zip rds_config.py
+
+aws lambda update-function-code --function-name dbtool --zip-file fileb://lambda_function.zip
+
+rm lambda_function.zip
